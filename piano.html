@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="piano.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+<div class="hh">
+    <h1>Press the Key on keyboard</h1>
+</div>
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="hot-kickdrum-c-key-546-zgO.wav"></audio>
+  <audio data-key="83" src="trap-top-drums-hi-hats-snare_125bpm_C.wav"></audio>
+  <audio data-key="68" src="the-box-clap (2).wav"></audio>
+  <audio data-key="70" src="drill-drums-with-808-bass_141bpm.wav"></audio>
+  <audio data-key="71" src="basic-drum-beat_120bpm.wav"></audio>
+  <audio data-key="72" src="electricpiano_modulated_dance_135_bpm_Cm_25T.wav"></audio>
+  <audio data-key="74" src="hot-kickdrum-c-key-546-zgO.wav"></audio>
+  <audio data-key="75" src="drill-drums-with-808-bass_141bpm (2).wav"></audio>
+  <audio data-key="76" src="93_bpm_boom_bap_rap_drum_beat_C_GPj.wav"></audio>
+
+<script>
+    
+    function playSound(e){
+      
+
+     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+     if(!audio) return;
+        
+     audio.play();
+     key.classList.add('playing');
+    }
+       
+        
+    
+    function removeTransition(e){
+      if(e.propertyName !== 'transform') return;
+
+      this.classList.remove('playing');
+    }
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend',removeTransition));
+    window.addEventListener('keydown',playSound );
+</script>
+
+
+</body>
+</html>
